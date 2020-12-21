@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        var led_s;
+        function open_led(value) {
+            var xmlhttp;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5led_s
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.open("GET", "con2pi.php?pi=" + value, true);
+            xmlhttp.send();
+        }
+
+        function read_temp() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("pi_temp").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "con2pi.php?pi=get_temp", true);
+            xmlhttp.send();
+        }
+
+        function read_led() {
+            var xmlhttp, out_value;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    led_s = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "con2pi.php?pi=get_led", true);
+            xmlhttp.send();
+
+            if (led_s == "1") {
+                out_value = "已开灯";
+                document.getElementById("led_pic").src = "/src/led_open.png";
+            }
+            else if (led_s == "0") {
+                out_value = "已关灯";
+                document.getElementById("led_pic").src = "/src/led_close.png";
+            }
+            document.getElementById("led_status").innerHTML = out_value;
+        }
+
+        function read_value() {
+            read_temp()
+            read_led()
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body onload="read_value()">
+    <!-- <h1 style="text-align: center;">最爱小欢欢</h1> -->
+
+    <div id="读取温度">
+        <p>php读取树莓派温度：<span id="pi_temp"></span></p>
+    </div>
+
+    <div id="led_con">
+        <button onclick="open_led('led_open')">打开</button>
+        <button onclick="open_led('led_close')">关闭</button>
+        <p>结果：<span id="led_status"></span></p>
+        <img src="" id="led_pic" width="100" height="100">
+    </div>
+    <script>
+        var myVar = setInterval(function () { read_value() }, 1000);
+    </script>
+</body>
+
+</html>

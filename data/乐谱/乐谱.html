@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jquery1.10版本兼容性高
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>   -->
+
+    <!-- jquery3.X版本新 -->
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+    <title>乐谱</title>
+    <style>
+        .box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .left,
+        .right {
+            background-color: rgb(57, 66, 71);
+            color: #f7971e;
+            border: 2px solid rgb(75, 102, 224);
+            flex: 10%;
+            position: relative;
+            height: auto;
+
+        }
+
+        .center {
+            background-color: rgb(89, 88, 107);
+            color: #f7971e;
+            flex: 80%;
+            text-align: center;
+            text-shadow: 5px 5px 5px #4E4032;
+
+        }
+
+        .center {
+            color: #f7971e;
+            text-align: center;
+            text-shadow: 5px 5px 5px #4E4032;
+        }
+
+        .right ul {
+            list-style-type: none;
+            position: relative;
+            left: 5px;
+            right: 5px;
+            top: 10px;
+            padding: 1px;
+        }
+
+        .left button,
+        .right button {
+            color: #f7971e;
+            border: 3px solid rgb(94, 116, 222);
+            border-radius: 20px 20px 20px 20px;
+            background-color: black;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .left button:hover,
+        .right button:hover {
+            background-color: rgb(94, 87, 87);
+        }
+    </style>
+
+
+    <script>
+
+        //获取曲谱文件夹列表
+        function get_list() {
+            var xmlhttp;
+            var data, text;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    text = xmlhttp.responseText;
+                    data = JSON.parse(text);
+
+                    var table = document.getElementById("src_list");
+                    for (var i = 0; i < data.length; i++) {
+                        var row = table.insertRow(table.rows.length);
+                        var c1 = row.insertCell(0);
+
+                        html = document.createElement('button')
+                        html.onclick = function () {
+                            get_song(this.id);
+                        }
+                        html.id = data[i].id
+                        html.innerText = (i + 1) + '、' + data[i].id;
+                        c1.appendChild(html)
+                    }
+                }
+            }
+
+            xmlhttp.open("GET", "/data/乐谱/get_src.php?data=list", true);
+            xmlhttp.send();
+        }
+
+        //获取曲谱图片路径
+        function get_song(song_name) {
+            var xmlhttp;
+            var data, text;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    text = xmlhttp.responseText;
+                    data = JSON.parse(text);        //图片路径
+                    insert_pic(data, song_name, 'main_src')
+                }
+            }
+            xmlhttp.open("GET", "/data/乐谱/get_src.php?data=" + song_name, true);
+            xmlhttp.send();
+        }
+
+        // <div id=main_div> 下添加图片
+        function insert_pic(data, song_name, main_div) {
+            document.getElementById('song_name').innerHTML = song_name
+
+            var box = document.getElementById(main_div)
+            var old = document.getElementById("songs_src");   // 删除原有的图片div
+            if (old != null) {
+                old.remove()
+            }
+
+            new_div = document.createElement('div')            //为图片创建新div
+            new_div.id = "songs_src"
+            box.appendChild(new_div)
+
+            for (var i = 0; i < data.length; i++) {
+                html = document.createElement('img')
+                html.src = data[i]
+                html.alt = "无图像"
+                html.style = "width:100%"
+                new_div.appendChild(html)
+
+                tmp = document.createElement('br')
+                new_div.appendChild(tmp)
+            }
+        }
+
+        // 工具栏固定
+        $(window).scroll(function (event) {
+            var wScrollY = window.scrollY; // 当前滚动条位置    
+            var wInnerH = window.innerHeight; // 设备窗口的高度（不会变） 
+            center_string = $(".center").css("height")
+            end_index = center_string.indexOf("p")      // "100px"字符串中字符'p'下标
+            center_number = center_string.slice(0, end_index)
+
+            if (wScrollY + wInnerH < center_number) {
+                $(".right").css("top", wScrollY)
+                $(".right").css("height", center_number - wScrollY)
+            }
+        })
+
+
+        //自动滚动
+        $(document).ready(function () {
+            $('#auto_scroll').click(function () {
+                var wScrollY = window.scrollY; // 当前滚动条位置    
+                var wInnerH = window.innerHeight; // 设备窗口的高度（不会变） 
+                center_string = $(".center").css("height")
+                end_index = center_string.indexOf("p")      // "100px"字符串中字符'p'下标
+                center_number = center_string.slice(0, end_index)
+                var end_pos = center_number - wInnerH
+                
+                // spd = $('#spd').val()   //像素每秒
+                spd = $("input[name='spd']:checked").val()   //像素每秒
+                t = ((end_pos - wScrollY) / spd) * 1000
+                $('html,body').animate({
+                    scrollTop: end_pos
+                }, t,'linear');
+            });
+
+            $("#stop").click(function () {
+                $('html,body').stop();
+            });
+            $("#top_pos").click(function () {
+                $('html,body').scrollTop(0)
+            });
+        });
+    </script>
+</head>
+
+<body onload="get_list()">
+    <div class="box">
+        <div class="left" id="mulu">
+            <table id="src_list" border="1" cellspacing="1" cellpadding="1" style="float:left">
+                <tr>
+                    <th>
+                        <h1>乐谱目录</h1>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="center" id="main_src">
+            <h1 id="song_name">曲谱</h1>
+        </div>
+
+        <div class="right" id="tools">
+            速度: <br>
+            <!-- <input type="text" id="spd" value="25"><br> -->
+            <input type="radio" name="spd" value=20>低速<br>
+            <input type="radio" name="spd" value=40>中速<br>
+            <input type="radio" name="spd" value=60>高速<br>
+            <button id="auto_scroll">自动滚动</button><br>
+            <button id="stop">停止</button><br>
+            <button id="top_pos">顶部</button><br>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+h1 {
+    background-color:rgb(113, 108, 120);
+    text-align: center;
+    color:whitesmoke;
+  }
+body {
+    background-color: rgb(57, 66, 71);
+    background-repeat: repeat-x;
+  }
+
+
+.one_ul a:hover,a:active{
+	background-color:rgb(179, 116, 0);
+}
+.one_ul a:visited {
+  color:orange;
+  text-decoration: none
+}
+.one_ul a{
+  display:block;
+  color:orange;
+  width:200px;
+}
+
+.two_ul a:hover,a:active{
+	background-color:rgb(114, 168, 34);
+}
+.two_ul a:visited{
+	color:greenyellow;
+}
+.two_ul a{
+  display:block;
+  color:greenyellow;
+  width:200px;
+}
+
+.three_ul a:hover,a:active{
+	background-color:rgb(0, 179, 185);
+}
+.three_ul a:visited{
+	color:rgb(0, 247, 255);
+}
+.three_ul a{
+  display:block;
+  color:rgb(0, 247, 255);
+  width:200px;
+}
+
+.one_ul{
+  list-style-type:decimal;
+}
+
+.two_ul{
+  list-style-type:lower-roman;
+}
+
+.three_ul{
+  list-style-type:square;
+}
+

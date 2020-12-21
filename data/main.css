@@ -1,0 +1,49 @@
+/* html_title
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.html_title {
+    text-align: center;
+    color:whitesmoke;
+    background-color:rgb(113, 108, 120);
+    right:0px;
+    left:0px;
+    top:0px;
+}
+
+.content{
+    position: fixed;
+    right:1300px;
+    left:30px; 
+    top:100px;
+    overflow-y: auto;
+}
+
+.h1_title{
+    /* background-color : red; */
+    color:lawngreen;
+    position:relative;
+    left:5px;
+    
+}
+.h2_title{
+    
+    /* background-color : rgb(13, 155, 173); */
+    color:midnightblue;
+    position:relative;
+    left:15px;
+}
+.h3_title{
+    /* background-color : rgb(155, 26, 148); */
+    color:sienna;
+    position:relative;
+    left:25px;
+}
+
+
+
+#title_content{
+    position: fixed;
+    right:1600px;
+    left:10px;
+    top:100px;
+    overflow-y: auto;
+}

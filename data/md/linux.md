@@ -1,0 +1,20 @@
+# nginx
+
+1、本地nginx目录：/usr/sbin/nginx
+2、nginx.conf位置：sudo vi /etc/nginx/nginx.conf
+3、nginx启动:sudo /usr/sbin/nginx -c /etc/nginx/nginx.conf
+4、查看nginx进程：ps -ef|grep nginx
+5、nginxerror日志：/var/log/nginx/error.log
+6、测试conf配置是否正确：sudo /usr/sbin/nginx -t
+7、重新加载conf配置：sudo /usr/sbin/nginx -s reload
+# ufw
+sudo ufw allow 22
+# php安装配置
+php 路径：/etc/php/7.3/fpm
+打开php配置：sudo vi /etc/php/7.3/fpm/php-fpm.conf
+error日志：/var/log/php7.3-fpm.log
+php.ini：sudo vi /etc/php/7.3/fpm/php.ini 
+sudo systemctl restart php7.3-fpm #重启
+sudo systemctl start php7.3-fpm #启动
+sudo systemctl stop php7.3-fpm #关闭
+sudo systemctl status php7.3-fpm 
