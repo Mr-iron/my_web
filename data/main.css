@@ -10,10 +10,10 @@
 }
 
 .content{
-    position: fixed;
+    /* position: fixed;
     right:1300px;
     left:30px; 
-    top:100px;
+    top:100px; */
     overflow-y: auto;
 }
 
@@ -41,9 +41,9 @@
 
 
 #title_content{
-    position: fixed;
+    /* position: fixed;
     right:1600px;
     left:10px;
-    top:100px;
+    top:100px; */
     overflow-y: auto;
 }
