@@ -27,19 +27,7 @@ sudo systemctl status php7.3-fpm
 
 ## git
 
-### push上传
-
-git push 命用于从将本地的分支版本上传到远程并合并。
-
-```bash
-git push origin master
-```
-
-### commit提交
-
-```bash
-git commit -am "添加到远程"
-```
+[菜鸟教程git资料](https://www.runoob.com/git/git-basic-operations.html)
 
 ### add添加
 
@@ -48,3 +36,39 @@ git add 命令可将该文件添加到暂存区。
 
 `git add [file1] [file2]`
 
+### commit提交
+
+将暂存的更改提交到commit，使用-m参数
+
+```bash
+git commit -m "消息"
+```
+
+添加文件(git add)并提交到commit,使用参数-am
+
+```bash
+git commit -am "消息"
+```
+
+### push上传
+
+git push 命用于从将本地的分支版本上传到远程并合并。
+
+```bash
+git push origin main
+```
+
+### pull拉取
+
+git pull 命令用于从远程获取代码并合并本地的版本。
+git pull 其实就是 git fetch 和 git merge FETCH_HEAD 的简写。 命令格式如下
+
+```bash
+git pull <远程主机名> <远程分支名>:<本地分支名>
+```
+
+将远程主机 origin 的 master 分支拉取过来，与本地的 brantest 分支合并。
+
+```bash
+git pull origin master:brantest
+```
