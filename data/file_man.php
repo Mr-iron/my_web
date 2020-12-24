@@ -37,4 +37,6 @@ if ($type == "refresh") {
         move_uploaded_file($_FILES["file"]["tmp_name"], $full_dir . "/" . $_FILES["file"]["name"]);
         echo "文件存储成功: " . $full_dir . "/" . $_FILES["file"]["name"];
     }
+}else{
+    echo "test1";
 }

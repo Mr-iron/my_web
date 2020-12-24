@@ -68,9 +68,10 @@
             // 删除文件
             $("#delete_file").click(function () {
                 sel_file_name = $('input:radio[name=file_name]:checked').attr("id");
-                $.get("/data/python/file_man.php?type=delete&data=" + sel_file_name, function (data, status) {
+                $.get("/data/file_man.php?type=delete&data=" + sel_file_name, function (data, status) {
                     let output = document.getElementById('log')
                     output.innerHTML = data;
+                    console.log(data)
                 });
                 flash_file_list()
             });
@@ -82,18 +83,20 @@
                 $.get(path, function (text) {
                     md_text = markdownit().render(text)
                     $("#innner").html(md_text)
-                    var doc, h1_title, h2_title, h3_title
 
+                    //  目录栏添加轮廓
+                    $("#title_content").css("border", "5px solid rgb(65, 81, 94)");
+                    $("#title_content").empty();
+                    var doc, h1_title, h2_title, h3_title
                     doc = document.getElementById("innner")
 
                     h1_title = doc.getElementsByTagName("h1");
-                    
                     for (h1_i = 0; h1_i < h1_title.length; h1_i++) {
                         var title_text = h1_title[h1_i].innerHTML
                         h1_title[h1_i].id = title_text
                         var li = document.createElement("a");
-                        li.href = "/data/study_source.html#"+title_text
-                        
+                        li.href = "/data/study_source.html#" + title_text
+
                         li.innerHTML = title_text
                         li.className = "h1_title"
                         $("#title_content").append(li);
@@ -102,13 +105,12 @@
 
                     h2_title = doc.getElementsByTagName("h2");
                     $("#title_content").append("<br>");
-                    
                     for (h2_i = 0; h2_i < h2_title.length; h2_i++) {
                         var title_text = h2_title[h2_i].innerHTML
                         h2_title[h2_i].id = title_text
                         var li = document.createElement("a");
-                        li.href = "/data/study_source.html#"+title_text
-                        
+                        li.href = "/data/study_source.html#" + title_text
+
                         li.innerHTML = title_text
                         li.className = "h2_title"
                         $("#title_content").append(li);
@@ -120,8 +122,8 @@
                         var title_text = h3_title[h3_i].innerHTML
                         h3_title[h3_i].id = title_text
                         var li = document.createElement("a");
-                        li.href = "/data/study_source.html#"+title_text
-                        
+                        li.href = "/data/study_source.html#" + title_text
+
                         li.innerHTML = title_text
                         li.className = "h3_title"
                         $("#title_content").append(li);
@@ -136,14 +138,12 @@
 </head>
 
 <body onload="flash_file_list()">
-    <div class="container-fluid ">
-        <div class="row html_title">
-            <div class="col-md-12">
-                <h1>Python资料库</h1>
-                <p style="text-align: right;margin: 0px;">铁逗逗制作</p>
-            </div>
-        </div>
+    <div class="html_title">
+        <h1>Python资料库</h1>
+        <p style="text-align: right;">铁逗逗制作</p>
+    </div>
 
+    <div class="container-fluid ">
         <div class="row main">
             <div class="col-md-2">
                 <div class="content">
@@ -166,7 +166,7 @@
                         </ul>
                     </nav>
 
-                    <form action="/data/python/file_man.php" method="post" enctype="multipart/form-data"
+                    <form action="/data/file_man.php" method="post" enctype="multipart/form-data"
                         target="iframe_display">
                         <input type="file" name="file" id="file">
                         <input type="submit" name="submit" class="btn btn-primary" value="提交">
@@ -175,22 +175,27 @@
                     <form id="content_inner"></form>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div id="title_content">
-
+            <div class="col-md-6">
+                <div id="innner">
                 </div>
             </div>
-
-            <div class="col-md-8">
-                <div id="innner">
-
-                </div>
+            <div class="col-md-4">
             </div>
         </div>
 
         <div class="row bottom">
+            <div>
+                <p id="log" style="display:none;"></p>
+                <iframe id="iframe_display" style="display:none;">
 
+                </iframe>
+            </div>
         </div>
+
+    </div>
+
+    <div id="title_content">
+
     </div>
 </body>
 

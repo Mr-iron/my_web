@@ -1,29 +1,31 @@
-# 一）Selenium基础
+# selenium资料
+
+## 一、Selenium基础
 
 入门教程：[Selenium官网教程](http://www.selenium.org.cn/1598.html)
 
-## 1.Selenium简介
+### 1.Selenium简介
 
 Selenium是一个用于测试网站的自动化测试工具，支持各种浏览器包括Chrome、Firefox、Safari等主流界面浏览器，同时也支持phantomJS无界面浏览器。
 
-## 2.支持多种操作系统
+### 2.支持多种操作系统
 
 如Windows、Linux、IOS、Android等。
 
-## 3.安装Selenium
+### 3.安装Selenium
 
-```
+```linux
 pip install Selenium
 ```
 
-## 4.安装浏览器驱动
+### 4.安装浏览器驱动
 
 Selenium3.x调用浏览器必须有一个webdriver驱动文件
 
-1.  Chrome驱动文件下载：[点击下载chromedrive](https://chromedriver.storage.googleapis.com/index.html?path=2.35/)
-2.  Firefox驱动文件下载:[点解下载geckodriver](https://github.com/mozilla/geckodriver/releases)
+- Chrome驱动文件下载：[点击下载chromedrive](https://chromedriver.storage.googleapis.com/index.html?path=2.35/)
+- Firefox驱动文件下载:[点解下载geckodriver](https://github.com/mozilla/geckodriver/releases)
 
-## 5.配置环境变量
+### 5.配置环境变量
 
 设置浏览器的地址非常简单。 我们可以手动创建一个存放浏览器驱动的目录，如： F:\\GeckoDriver , 将下载的浏览器驱动文件（例如：chromedriver、geckodriver）丢到该目录下。
 
@@ -31,22 +33,22 @@ Selenium3.x调用浏览器必须有一个webdriver驱动文件
 
 [参考浏览器驱动环境配置](http://www.testclass.net/selenium_python/selenium3-browser-driver/)
 
-# (二)Selenium 快速入门
+## 二、Selenium 快速入门
 
 [入门参考文献：Selenium入门](http://www.testclass.net/selenium_python/)
 
-## 1.Selenium提供了8种定位方式:
+### 1.Selenium提供了8种定位方式
 
-1.  id
-2.  name
-3.  class name
-4.  tag name
-5.  link text
-6.  partial link text
-7.  xpath
-8.  css selector
+- id
+- name
+- class name
+- tag name
+- link text
+- partial link text
+- xpath
+- css selector
 
-## 2.定位元素的8种方式
+### 2.定位元素的8种方式
 
 [参考：selenium元素定位](http://www.testclass.net/selenium_python/find-element/)
 
@@ -61,7 +63,7 @@ Selenium3.x调用浏览器必须有一个webdriver驱动文件
 | find\_element\_by\_class\_name | find\_elements\_by\_class\_name | 通过类名进行定位 |
 | find\_elements\_by\_css\_selector | find\_elements\_by\_css\_selector | 通过css选择器进行定位 |
 
-## 3.实例演示
+### 3.实例演示
 
 假如我们有一个Web页面，通过前端工具（如，Firebug）查看到一个元素的属性是这样的。
 
@@ -75,31 +77,31 @@ Selenium3.x调用浏览器必须有一个webdriver驱动文件
         <input id="kw" class="s_ipt" name="wd" value="" maxlength="255" autocomplete="off">
 ```
 
-*   通过id定位:
+- 通过id定位:
 
 ```python
 dr.find_element_by_id("kw")
 ```
 
-*   通过name定位:
+- 通过name定位:
 
 ```python
 dr.find_element_by_name("wd")
 ```
 
-*   通过class name定位:
+- 通过class name定位:
 
 ```python
 dr.find_element_by_class_name("s_ipt")
 ```
 
-*   通过tag name定位:
+- 通过tag name定位:
 
 ```python
 dr.find_element_by_tag_name("input")
 ```
 
-*   通过xpath定位，xpath定位有N种写法，这里列几个常用写法:
+- 通过xpath定位，xpath定位有N种写法，这里列几个常用写法:
 
 ```python
 dr.find_element_by_xpath("//*[@id='kw']")
@@ -111,7 +113,7 @@ dr.find_element_by_xpath("//form[@id='form']/span/input")
 dr.find_element_by_xpath("//input[@id='kw' and @name='wd']")
 ```
 
-*   通过css定位，css定位有N种写法，这里列几个常用写法:
+- 通过css定位，css定位有N种写法，这里列几个常用写法:
 
 ```python
 dr.find_element_by_css_selector("#kw")
@@ -129,14 +131,14 @@ dr.find_element_by_css_selector("form#form > span > input")
 <a class="mnav" href="http://www.hao123.com" name="tj_trhao123">hao123</a>
 ```
 
-*   通过link text定位:
+- 通过link text定位:
 
 ```python
 dr.find_element_by_link_text("新闻")
 dr.find_element_by_link_text("hao123")
 ```
 
-*   通过partial link text定位:
+- 通过partial link text定位:
 
 ```python
 dr.find_element_by_partial_link_text("新")
@@ -144,9 +146,9 @@ dr.find_element_by_partial_link_text("hao")
 dr.find_element_by_partial_link_text("123")
 ```
 
-## 4.Selenium库下webdriver模块常用方法的使用
+### 4.Selenium库下webdriver模块常用方法的使用
 
-### 1.控制浏览器操作的一些方法
+#### 1.控制浏览器操作的一些方法
 
 | 方法 | 说明 |
 | --- | --- |
@@ -191,7 +193,7 @@ element=browser.find_element_by_link_text("“下团组”时间")
 element.click()
 ```
 
-### 2.鼠标事件
+#### 2.鼠标事件
 
 在 WebDriver 中， 将这些关于鼠标操作的方法封装在 ActionChains 类提供。
 
@@ -244,7 +246,7 @@ elem3.click()
 
 ```
 
-### 3.键盘事件
+#### 3.键盘事件
 
 Selenium中的Key模块为我们提供了模拟键盘按键的方法，那就是send\_keys()方法。它不仅可以模拟键盘输入，也可以模拟键盘的操作。
 
@@ -268,7 +270,7 @@ Selenium中的Key模块为我们提供了模拟键盘按键的方法，那就是
 | send\_keys(Keys.CONTROL,‘v’) | 粘贴（Ctrl+V） |
 | send\_keys(Keys.F1…Fn) | 键盘 F1…Fn |
 
-### 4.获取断言信息
+#### 4.获取断言信息
 
 不管是在做功能测试还是自动化测试，最后一步需要拿实际结果与预期进行比较。这个比较的称之为断言。通过我们获取title 、URL和text等信息进行断言。
 
@@ -322,7 +324,7 @@ driver.quit()
 
 打印输出结果
 
-```
+```bash
 Before search================
 百度一下，你就知道
 https://www.baidu.com/
@@ -333,9 +335,9 @@ https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=selenium&rsv
 百度为您找到相关结果约7,170,000个
 ```
 
-### 5.设置元素等待:[参考文献](http://www.testclass.net/selenium_python/element-wait/)
+#### 5.设置元素等待:[参考文献](http://www.testclass.net/selenium_python/element-wait/)
 
-### 6.定位一组元素
+#### 6.定位一组元素
 
 定位一组元素的方法与定位单个元素的方法类似，唯一的区别是在单词element后面多了一个s表示复数。
 
@@ -366,7 +368,7 @@ for t in elements:
 driver.quit()
 ```
 
-### 7.多表单切换
+#### 7.多表单切换
 
 在Web应用中经常会遇到frame/iframe表单嵌套页面的应用，WebDriver只能在一个页面上对元素识别与定位，对于frame/iframe表单内嵌页面上的元素无法直接定位。这时就需要通过switch\_to.frame()方法将当前定位的主体切换为frame/iframe表单的内嵌页面中。
 
@@ -418,7 +420,7 @@ driver.switch_to.frame(xf)
 driver.switch_to.parent_frame()
 ```
 
-### 8.多窗口切换
+#### 8.多窗口切换
 
 在页面操作过程中有时候点击某个链接会弹出新的窗口，这时就需要主机切换到新打开的窗口上进行操作。WebDriver提供了switch\_to.window()方法，可以实现在不同的窗口之间切换。
 
@@ -458,7 +460,7 @@ for handle in all_handles:
 driver.quit()
 ```
 
-### 9.警告框处理
+#### 9.警告框处理
 
 在WebDriver中处理JavaScript所生成的alert、confirm以及prompt十分简单，具体做法是使用 switch\_to.alert 方法定位到 alert/confirm/prompt，然后使用text/accept/dismiss/ send\_keys等方法进行操作。
 
@@ -470,6 +472,7 @@ driver.quit()
 | send\_keys(keysToSend) | 发送文本至警告框。keysToSend：将文本发送至警告框。 |
 
 实例演示
+
 ```python
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
@@ -498,7 +501,7 @@ driver.switch_to.alert.accept()
 driver.quit()
 ```
 
-### 10.下拉框选择操作
+#### 10.下拉框选择操作
 
 导入选择下拉框Select类，使用该类处理下拉框操作。
 
@@ -513,9 +516,6 @@ Select类的方法
 | select\_by\_value(“选择值”) | select标签的value属性的值 |
 | select\_by\_index(“索引值”) | 下拉框的索引 |
 | select\_by\_visible\_testx(“文本值”) | 下拉框的文本值 |
-
-有时我们会碰到下拉框，WebDriver提供了Select类来处理下拉框。 如百度搜索设置的下拉框，如下图：  
-\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-7WUxrkEj-1571973999629)(http://orru5lls3.bkt.clouddn.com/select.png)\]
 
 ```python
 from selenium import webdriver
@@ -541,7 +541,7 @@ sleep(3)
 driver.quit()
 ```
 
-### 11.文件上传
+#### 11.文件上传
 
 对于通过input标签实现的上传功能，可以将其看作是一个输入框，即通过send\_keys()指定本地文件路径的方式实现文件上传。
 
@@ -561,7 +561,7 @@ driver.find_element_by_name("file").send_keys('D:\\upload_file.txt')
 driver.quit()
 ```
 
-### 12.cookie操作
+#### 12.cookie操作
 
 有时候我们需要验证浏览器中cookie是否正确，因为基于真实cookie的测试是无法通过白盒和集成测试进行的。WebDriver提供了操作Cookie的相关方法，可以读取、添加和删除cookie信息。
 
@@ -616,7 +616,7 @@ time.sleep(3)
 browser.close()
 ```
 
-### 13.调用JavaScript代码
+#### 13.调用JavaScript代码
 
 虽然WebDriver提供了操作浏览器的前进和后退方法，但对于浏览器滚动条并没有提供相应的操作方法。在这种情况下，就可以借助JavaScript来控制浏览器的滚动条。WebDriver提供了execute\_script()方法来执行JavaScript代码。
 
@@ -695,7 +695,7 @@ driver.close()
 
 ```
 
-### 14.窗口截图
+#### 14.窗口截图
 
 自动化用例是由程序去执行的，因此有时候打印的错误信息并不十分明确。如果在脚本执行出错的时候能对当前窗口截图保存，那么通过图片就可以非常直观地看出出错的原因。WebDriver提供了截图函数get\_screenshot\_as\_file()来截取当前窗口。
 
@@ -722,7 +722,7 @@ driver.get_screenshot_as_file("D:\\baidu_img.jpg")
 driver.quit()
 ```
 
-### 15.关闭浏览器
+#### 15.关闭浏览器
 
 在前面的例子中我们一直使用quit()方法，其含义为退出相关的驱动程序和关闭所有窗口。除此之外，WebDriver还提供了close()方法，用来关闭当前窗口。例多窗口的处理，在用例执行的过程中打开了多个窗口，我们想要关闭其中的某个窗口，这时就要用到close()方法进行关闭了。
 
@@ -730,3 +730,4 @@ driver.quit()
 | --- | --- |
 | close() | 关闭单个窗口 |
 | quit() | 关闭所有窗口 |
+hello,world

@@ -2,7 +2,7 @@
 
 ## Numpy
 
-[ ](http://www.numpy.org/)是Python中科学计算的核心库。它提供了一个高性能的多维数组对象，以及用于处理这些数组的工具。如果你已经熟悉MATLAB，你可能会发现这篇教程对于你从MATLAB切换到学习Numpy很有帮助。
+[numpy](http://www.numpy.org/)是Python中科学计算的核心库。它提供了一个高性能的多维数组对象，以及用于处理这些数组的工具。如果你已经熟悉MATLAB，你可能会发现这篇教程对于你从MATLAB切换到学习Numpy很有帮助。
 
 ### 数组(Arrays)
 
@@ -197,7 +197,7 @@ array([[[ 0,  1,  2],
         [24, 25, 26]]])
 ```
 
-需要注意的是：数组中元素的数量（27）必须是其尺寸（3 * 3 * 3）的乘积。 要交叉检查它是否是三维数组，可以使用shape属性。
+需要注意的是：数组中元素的数量（27）必须是其尺寸（3\*3\*3）的乘积。 要交叉检查它是否是三维数组，可以使用shape属性。
 
 ```python
 array.shape
@@ -221,7 +221,7 @@ np.arange(10, 35, 3)
 array([10, 13, 16, 19, 22, 25, 28, 31, 34])
 ```
 
-####  使用其他Numpy函数
+#### 使用其他Numpy函数
 
 除了arange函数之外，你还可以使用其他有用的函数（如 `zeros` 和 `ones`）来快速创建和填充数组。
 
@@ -381,7 +381,7 @@ array.shape
 (2, 3)
 ```
 
-####  使用特殊的库函数
+#### 使用特殊的库函数
 
 你还可以使用特殊库函数来创建数组。例如，要创建一个填充0到1之间随机值的数组，请使用`random`函数。这对于需要随机状态才能开始的问题特别有用。
 
@@ -400,7 +400,6 @@ array([[0.1632794 , 0.34567049],
 
 Numpy提供了几种索引数组的方法。
 
-
 #### 花式索引
 
 `花式索引` 是获取数组中我们想要的特定元素的有效方法。
@@ -413,7 +412,6 @@ b = a[indices]
 print(a) # >>>[ 0 10 20 30 40 50 60 70 80 90]
 print(b) # >>>[10 50 90]
 ```
-
 
 #### 切片(Slicing)
 
@@ -600,7 +598,6 @@ c = np.where(a >= 50)[0]
 print(b) # >>>(array([0, 1, 2, 3, 4]),)
 print(c) # >>>[5 6 7 8 9]
 ```
-
 
 ### 数据类型
 
@@ -794,12 +791,6 @@ print(y)  # Prints "[[ 2  2  4]
 4. 广播之后，每个数组的行为就好像它的形状等于两个输入数组的形状的元素最大值。
 5. 在一个数组的大小为1且另一个数组的大小大于1的任何维度中，第一个数组的行为就像沿着该维度复制一样
 
-如果对于以上的解释依然没有理解，请尝试阅读[这篇文档](https://www.numpy.org.cn/user_guide/numpy_basics/broadcasting.html)或[这篇解释](http://wiki.scipy.org/EricsBroadcastingDoc)
-
-[ ](http://wiki.scipy.org/EricsBroadcastingDoc)中的说明。
-
-支持广播的功能称为通用功能。你可以在[这篇文档](https://www.numpy.org.cn/reference/ufuncs/available_ufuncs.html)中找到所有通用功能的列表。
-
 以下是广播的一些应用：
 
 ```python
@@ -851,13 +842,9 @@ print(x * 2)
 
 ## SciPy
 
-Numpy提供了一个高性能的多维数组和基本工具来计算和操作这些数组。 而[SciPy](https://docs.scipy.org/doc/scipy/reference/)
+Numpy提供了一个高性能的多维数组和基本工具来计算和操作这些数组。 而[SciPy](https://docs.scipy.org/doc/scipy/reference/)以此为基础，提供了大量在numpy数组上运行的函数，可用于不同类型的科学和工程应用程序。
 
-[ ](https://docs.scipy.org/doc/scipy/reference/)以此为基础，提供了大量在numpy数组上运行的函数，可用于不同类型的科学和工程应用程序。
-
-熟悉SciPy的最佳方法是浏览[它的文档](https://docs.scipy.org/doc/scipy/reference/index.html)
-
-[ ](https://docs.scipy.org/doc/scipy/reference/index.html)。我们将重点介绍SciPy有关的对你有价值的部分内容。
+熟悉SciPy的最佳方法是浏览[它的文档](https://docs.scipy.org/doc/scipy/reference/index.html)。我们将重点介绍SciPy有关的对你有价值的部分内容。
 
 ### 图像操作
 
@@ -891,9 +878,7 @@ imsave('assets/cat_tinted.jpg', img_tinted)
 
 ### MATLAB 文件
 
-函数 `scipy.io.loadmat` 和 `scipy.io.savemat` 允许你读取和写入MATLAB文件。你可以在[这篇文档](https://docs.scipy.org/doc/scipy/reference/io.html)
-
-[ ](https://docs.scipy.org/doc/scipy/reference/io.html)中学习相关操作。
+函数 `scipy.io.loadmat` 和 `scipy.io.savemat` 允许你读取和写入MATLAB文件。你可以在[这篇文档](https://docs.scipy.org/doc/scipy/reference/io.html)中学习相关操作。
 
 ### 点之间的距离
 
@@ -922,13 +907,9 @@ d = squareform(pdist(x, 'euclidean'))
 print(d)
 ```
 
-你可以在[这篇文档](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html)
+你可以在[这篇文档](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html)中阅读有关此功能的所有详细信息。
 
-[ ](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html)中阅读有关此功能的所有详细信息。
-
-类似的函数（`scipy.spatial.distance.cdist`）计算两组点之间所有对之间的距离; 你可以在[这篇文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html)
-
-[ ](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html)中阅读它。
+类似的函数（`scipy.spatial.distance.cdist`）计算两组点之间所有对之间的距离; 你可以在[这篇文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html)中阅读它。
 
 ## Matplotlib
 
@@ -978,9 +959,7 @@ plt.show()
 
 ![sine_cosine](https://www.numpy.org.cn/static/images/article/sine_cosine.png)
 
-你可以在[这篇文档](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot)
-
-[ ](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot)中阅读有关`绘图`功能的更多信息。
+你可以在[这篇文档](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot)中阅读有关`绘图`功能的更多信息。
 
 ### 子图
 
@@ -1014,9 +993,7 @@ plt.show()
 
 ![sine_cosine_subplot](https://www.numpy.org.cn/static/images/article/sine_cosine_subplot.png)
 
-你可以在[这篇文档](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot)
-
-[ ](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot)中阅读有关`子图`功能的更多信息。
+你可以在[这篇文档](https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot)中阅读有关**子图**功能的更多信息。
 
 ### 图片
 
