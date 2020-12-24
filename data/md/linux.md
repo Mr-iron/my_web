@@ -38,6 +38,13 @@ git push origin master
 ### commit提交
 
 ```bash
-git commit -m "添加到远程"
+git commit -am "添加到远程"
 ```
+
+### add添加
+
+git add 命令可将该文件添加到暂存区。
+添加一个或多个文件到暂存区(暂存的更改）：
+
+`git add [file1] [file2]`
 
