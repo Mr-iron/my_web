@@ -87,49 +87,24 @@
                     //  目录栏添加轮廓
                     $("#title_content").css("border", "5px solid rgb(65, 81, 94)");
                     $("#title_content").empty();
-                    var doc, h1_title, h2_title, h3_title
-                    doc = document.getElementById("innner")
 
-                    h1_title = doc.getElementsByTagName("h1");
-                    for (h1_i = 0; h1_i < h1_title.length; h1_i++) {
-                        var title_text = h1_title[h1_i].innerHTML
-                        h1_title[h1_i].id = title_text
-                        var li = document.createElement("a");
-                        li.href = "/data/study_source.html#" + title_text
+                    var h_list = $("#innner > :header")
+                    var ul = document.createElement("ul");
+                    $("#title_content").append(ul);
+                    for (var i = 0; i < h_list.length; i++) {
+                        if (h_list[i].tagName == "H1" || h_list[i].tagName == "H2" || h_list[i].tagName == "H3") {
+                            h_list[i].id = h_list[i].tagName + "_" + h_list[i].innerText
 
-                        li.innerHTML = title_text
-                        li.className = "h1_title"
-                        $("#title_content").append(li);
-                        $("#title_content").append("<br>");
+                            var li = document.createElement("li");
+                            ul.append(li);
+
+                            var li_a = document.createElement("a");
+                            li_a.href = "/data/study_source.html#" + h_list[i].id
+                            li_a.innerHTML = h_list[i].innerText
+                            li_a.className = h_list[i].tagName + "_title"
+                            li.append(li_a);
+                        }
                     }
-
-                    h2_title = doc.getElementsByTagName("h2");
-                    $("#title_content").append("<br>");
-                    for (h2_i = 0; h2_i < h2_title.length; h2_i++) {
-                        var title_text = h2_title[h2_i].innerHTML
-                        h2_title[h2_i].id = title_text
-                        var li = document.createElement("a");
-                        li.href = "/data/study_source.html#" + title_text
-
-                        li.innerHTML = title_text
-                        li.className = "h2_title"
-                        $("#title_content").append(li);
-                        $("#title_content").append("<br>");
-                    }
-
-                    h3_title = doc.getElementsByTagName("h3");
-                    for (h3_i = 0; h3_i < h3_title.length; h3_i++) {
-                        var title_text = h3_title[h3_i].innerHTML
-                        h3_title[h3_i].id = title_text
-                        var li = document.createElement("a");
-                        li.href = "/data/study_source.html#" + title_text
-
-                        li.innerHTML = title_text
-                        li.className = "h3_title"
-                        $("#title_content").append(li);
-                        $("#title_content").append("<br>");
-                    }
-
                 });
             });
 

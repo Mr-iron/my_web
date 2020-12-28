@@ -7,9 +7,6 @@
     z-index: 100;
 }
 
-.main{
-    /* margin-top: 130px; */
-}
 
 .content{
     /* position: fixed;
@@ -29,18 +26,19 @@
     
 }
 
-.h1_title{
+.H1_title{
     color:lawngreen;
     position:relative;
     left:5px;
 }
-.h2_title{
+.H2_title{
     color:midnightblue;
     position:relative;
     left:15px;
 }
-.h3_title{
+.H3_title{
     color:sienna;
     position:relative;
     left:25px;
 }
+
